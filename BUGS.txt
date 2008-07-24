@@ -1,0 +1,2 @@
+When the connection to a player is lost, the game is locked up because no one
+can end the turn of the lost player.

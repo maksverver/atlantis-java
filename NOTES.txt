@@ -1,0 +1,2 @@
+Hosting a game under the same name as an existing game (on the same RMI
+registry) makes the existing game unreachable, even if the new game is closed.

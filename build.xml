@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<project name="Atlantis" default="compile" basedir=".">
+
+<description>A Java implementation of the multi-player Atlantis board game.</description>
+  
+<property name="src"   location="."/>
+<property name="build" location="build"/>
+<property name="dist"  location="dist"/>
+<property name="docs"  location="docs"/>
+
+<target name="init">
+	<tstamp/>
+	<mkdir dir="${build}"/>
+</target>
+
+<target name="compile" depends="init" description="compile source code">
+	<javac deprecation="on" srcdir="${src}" destdir="${build}"/>
+    <rmic base="${build}" classname="World" />
+    <rmic base="${build}" classname="MainPanel$MainWorldListener" />
+</target>
+
+<target name="dist" depends="compile" description="generate distribution" >
+	<mkdir dir="${dist}/"/>
+	<jar jarfile="${dist}/Atlantis-${DSTAMP}.jar" basedir="${build}">
+        <manifest>
+            <attribute name="Main-Class" value="Atlantis" />
+        </manifest>
+    </jar>
+    <!--
+    <signjar jar="${dist}/Atlantis-${DSTAMP}.jar"
+        keystore="keystore" alias="Maks Verver" storepass="atlantis" />
+    -->
+</target>
+  
+<target name="clean" description="clean up">
+	<delete dir="${build}"/>
+	<delete dir="${dist}"/>
+	<delete dir="${docs}"/>
+</target>
+
+<target name="docs" description="generate source code documentation">
+	<javadoc access="private" destdir="docs">
+		<fileset dir="${src}" />
+	</javadoc>
+</target>
+
+</project>

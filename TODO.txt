@@ -1,0 +1,3 @@
+Make the Tile class immutable.
+
+Redesign the GUI so it isn't ugly.
